@@ -1,0 +1,9 @@
+{
+    "name": "kawamura.toshiki/mini-todo",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {}
+}
