@@ -6,32 +6,21 @@ use App\Core\View;
 use App\Model\TodoRepository;
 
 class HomeController{
-    public function index(){
+    public function index(array $params = []): void{
         $repo = new TodoRepository();
-        $repo->add("最初のタスク");
-
         $todos = $repo->all();
-
         View::render('home',[
-            'message' => 'HomeController からのメッセージ',
             'todos' => $todos
         ]);
     }
 
-    public function hello(){
-        echo "HomeController::Hello";
-    }
+    public function add(array $params = []): void{
+        $title = trim($_POST['title'] ?? '');
 
-    public function task(int $id){
-        echo "Task ID = " . $id;
-    }
-
-    public function add(){
-        if (!isset($_POST['title']) || trim($_POST['title']) === ''){
-            echo "title is NONE";
-            return;
+        if ($title === ''){
+            header('Location: /');
+            exit;
         }
-        $title = trim($_POST['title']);
         $repo = new TodoRepository();
         $repo->add($title);
 
@@ -39,11 +28,32 @@ class HomeController{
         header("Location: /");
         exit;
     }
-    public function done($params){
-        $id = $params['id'];
+
+    // 完了にする
+    public function done(array $params): void{
+        $id = isset($params['id']) ? (int)$params['id'] : 0;
+        if ($id <= 0){
+
+            header("Location: /");
+            exit;
+        }
         $repo = new TodoRepository();
         $repo->markDone($id);
 
+        header("Location: /");
+        exit;
+    }
+
+    //未完了にする
+    public function undo(array $params): void {
+        $id = isset($params['id']) ? (int)$params['id'] : 0;
+        if ($id <= 0){
+            header('Location: /');
+            exit;
+        }
+        $repo = new TodoRepository();
+
+        $repo->undoDone($id);
         header("Location: /");
         exit;
     }
