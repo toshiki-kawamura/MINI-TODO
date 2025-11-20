@@ -5,10 +5,10 @@ namespace App\Model;
 class Todo{
     public int $id;
     public string $title;
-    public bool $done = false;
+    public bool $done;
     // ?の意味
     // null を許可する NULL許容型 (Nullable Type)
-    public ?string $completedAt = null;
+    public ?string $completedAt;
 
     // __construct
     // PHPの予約済みの特別なメソッド

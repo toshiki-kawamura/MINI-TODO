@@ -6,8 +6,8 @@
     <title>Mini Todo</title>
 </head>
 <body>
-    <h1>Welcom to Mini Todo Framework</h1>
-    <p><?php echo $message ?? 'No message'; ?></p>
+    <h1>タスクアプリ</h1>
+    <!-- <p><?php echo $message ?? 'No message'; ?></p> -->
 
     <h2>新しいタスクを追加</h2>
     <form action="/tasks/add" method="POST">
@@ -16,16 +16,20 @@
     </form>
     <hr>
     <h2>Todo リスト</h2>
+    <?php if (!empty($todos)): ?>
     <ul>
         <?php foreach($todos as $todo): ?>
             <li>
-                <?= $todo->id ?> :
                 <!-- htmlspecialchars() -->
                 <!-- HTMLとして解釈しないような形式に変換 -->
+                <?= htmlspecialchars((string)$todo->id, ENT_QUOTES, 'UTF-8') ?> :
                 <?= htmlspecialchars($todo->title, ENT_QUOTES,'UTF-8') ?>
 
                 <?php if ($todo->done): ?>
-                    【完了】
+                    【完了】(<?= htmlspecialchars((string)$todo->completedAt, ENT_QUOTES, 'UTF-8') ?>)
+                    <form action="/tasks/<?= $todo->id ?>/undo" method="POST" style="display:inline;">
+                        <button type="submit">未完了に戻す</button>
+                    </form>
                 <?php else: ?>
                     <form action="/tasks/<?= $todo->id ?>/done" method="POST" style="display:inline;">
                         <button type="submit">完了にする</button>
@@ -34,5 +38,8 @@
             </li>
         <?php endforeach; ?>
     </ul>
+    <?php else: ?>
+        <p>タスクなし</p>
+    <?php endif; ?>
 </body>
 </html>
