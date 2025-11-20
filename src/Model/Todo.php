@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+// タスクがどのような値を持つか設定
 class Todo{
     public int $id;
     public string $title;

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Core\View;
 use App\Model\TodoRepository;
 
+// Repository（モデル層）を呼び出す
 class HomeController{
     public function index(array $params = []): void{
         $repo = new TodoRepository();

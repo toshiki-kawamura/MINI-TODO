@@ -2,6 +2,7 @@
 
 namespace App\Core;
 
+// 適切なコントローラーに振り分ける
 class Router{
 
     private array $routes = [];

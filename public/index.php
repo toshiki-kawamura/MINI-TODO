@@ -6,6 +6,7 @@ require __DIR__ . '/../vendor/autoload.php';
 use App\Core\Router;
 use App\Controller\HomeController;
 
+// HTTPリクエストを受け取る
 $router = new Router();
 $controller = new HomeController();
 

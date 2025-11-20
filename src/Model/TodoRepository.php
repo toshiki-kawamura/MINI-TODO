@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+// JSONを読み書きしてデータ更新する
 class TodoRepository{
     private string $file;
 

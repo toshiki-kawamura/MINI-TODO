@@ -2,6 +2,7 @@
 
 namespace App\Core;
 
+// viewファイルの設定
 class View{
     // staticキーワード
     // メソッドやプロパティが「インスタンス」ではなく「クラス自体」に属することを意味する
