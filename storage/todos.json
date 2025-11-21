@@ -2,8 +2,8 @@
     {
         "id": 1,
         "title": "task",
-        "done": true,
-        "completedAt": "2025-11-20 11:49:18"
+        "done": false,
+        "completedAt": null
     },
     {
         "id": 2,
