@@ -24,7 +24,6 @@
                 <!-- HTMLとして解釈しないような形式に変換 -->
                 <?= htmlspecialchars((string)$todo->id, ENT_QUOTES, 'UTF-8') ?> :
                 <?= htmlspecialchars($todo->title, ENT_QUOTES,'UTF-8') ?>
-
                 <?php if ($todo->done): ?>
                     【完了】(<?= htmlspecialchars((string)$todo->completedAt, ENT_QUOTES, 'UTF-8') ?>)
                     <form action="/tasks/<?= $todo->id ?>/undo" method="POST" style="display:inline;">
@@ -35,6 +34,9 @@
                         <button type="submit">完了にする</button>
                     </form>
                 <?php endif; ?>
+                <form action="/tasks/<?= $todo->id ?>/delete" method="POST" style="display:inline;">
+                    <button type="submit">削除</button>
+                </form>
             </li>
         <?php endforeach; ?>
     </ul>

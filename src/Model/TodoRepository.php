@@ -84,6 +84,17 @@ class TodoRepository{
         return $found;
     }
 
+    //タスクを削除
+    public function delete(int $id): void{
+        $items = $this->readJsonArray();
+        
+        $newItems = array_filter($items, function ($item) use ($id) {
+            return $item['id'] !== $id;
+        });
+
+        $this->writeJsonArray($newItems);
+    }
+
     private function readJsonArray(): array{
         $json = file_get_contents($this->file);
         $data = json_decode($json, true);

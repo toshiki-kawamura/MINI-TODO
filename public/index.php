@@ -27,7 +27,7 @@ $router->post('/tasks/{id}/done', [$controller, 'done']);
 $router->post('/tasks/{id}/undo', [$controller, 'undo']);
 
 // タスク削除
-// $router->post('/tasksk/{id}/delete', [$controller, 'delete']);
+$router->post('/tasks/{id}/delete', [$controller, 'delete']);
 
 //
 // リクエストの解析

@@ -58,6 +58,21 @@ class HomeController{
         header("Location: /");
         exit;
     }
+
+    // 削除する
+    public function delete(array $params): void{
+        $id = isset($params['id']) ? (int)$params['id'] : null;
+        
+        if ($id === null){
+            throw new \Exception("ID id required");
+        }
+        $repo = new TodoRepository();
+        $repo->delete($id);
+
+        //リダイレクト
+        header("Location: /");
+        exit;
+    }
 }
 
 // Laravelでいう
